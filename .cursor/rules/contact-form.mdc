@@ -1,0 +1,45 @@
+---
+description: Contact form rules — validation, API, and UX. Apply when working on the contact form or enquiries.
+globs:
+  - app/contact/**/*
+  - app/api/contact/**/*
+  - components/ContactForm.tsx
+  - lib/enquiries.ts
+  - tests/unit/enquiries.test.ts
+  - tests/e2e/contact.spec.ts
+alwaysApply: false
+---
+
+# Contact form rules
+
+## Fields (5)
+
+1. Your name* — required
+2. Work email* — required, valid email
+3. Company — optional
+4. What do you need help with?* — dropdown: `power-apps`, `dataverse`, `automation`, `not-sure`
+5. Tell us about your process* — required, minimum 20 characters
+
+Deep links pre-select the topic: `/contact?topic=power-apps` (also `dataverse`, `automation`, `not-sure`). Services page links use these.
+
+## Validation — single source of truth
+
+- Shared rules live in `lib/enquiries.ts` (`TOPIC_OPTIONS`, validation helpers). Client and server must use the same rules — do not duplicate different rules in the form component and the API route.
+- Validate on blur and on submit, with inline errors, an error summary (`role="alert"`) linking to each field, and focus moving to the first invalid field.
+- Server-side validation in `app/api/contact/route.ts` must match the client exactly.
+- On success `POST /api/contact` returns a reference like `HHX-…` and the confirmation panel replaces the form in place. On backend failure, show the failure banner and keep everything typed — never fake success.
+
+## Spam / limits
+
+- Honeypot field `company_website` must stay empty; use `sr-only` (visually hidden), never `display:none`. Filled = bot, rejected silently server-side.
+- No CAPTCHA. Rate limit: 10/min per IP (already in the API route — keep it).
+
+## Storage / email
+
+- Interim storage only: `data/enquiries.json` (git-ignored). Do not commit real enquiries.
+- No email is sent yet and `hello@hhxservices.example` is a placeholder — see project rules.
+
+## Tests
+
+- Unit tests: `tests/unit/enquiries.test.ts` — cover missing name, bad emails, unknown topics, 20-char message minimum, unknown blog slug.
+- E2E: `tests/e2e/contact.spec.ts` (Playwright) — run `npm run test:e2e` after form changes.

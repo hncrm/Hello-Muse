@@ -1,0 +1,17 @@
+---
+description: Testing rules for the HHX site. Apply when adding or changing tests.
+globs:
+  - tests/**/*
+  - vitest.config.mts
+  - playwright.config.ts
+alwaysApply: false
+---
+
+# Testing rules
+
+- Unit tests use Vitest: `npm run test:unit` (`vitest run`). Config: `vitest.config.mts`.
+- E2E tests use Playwright: `npm run test:e2e` (`playwright test`). Config: `playwright.config.ts`. If browsers are not installed, run `npx playwright install` first.
+- Run the full suite with `npm test` (unit + e2e) before pushing a change that touches the contact form or blog.
+- Test real behaviour, not just happy paths: validation errors, unknown blog slugs (must return 404 on first request, not 200-then-404), and invalid submissions.
+- Clear test enquiries from `data/enquiries.json` (or delete the file) after testing — never commit test submissions.
+- If a test fails, fix the code or the test — do not delete or weaken a test to make the suite pass without Huy's agreement.

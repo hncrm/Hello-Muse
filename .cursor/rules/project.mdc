@@ -1,0 +1,43 @@
+---
+description: HHX Services website — project overview, stack, and working rules. Always apply.
+globs:
+alwaysApply: true
+---
+
+# HHX Services — project rules
+
+HHX Services is a Microsoft Power Apps, Dataverse and Power Platform consultancy for small businesses. Site language: **English only**.
+
+## Stack
+
+- Next.js 16 (App Router) + React 19 + TypeScript + Tailwind CSS 4
+- No framework change, no backend/database yet — this is a Node app, not a static site
+- Hosting: Vercel at https://hello-muse.vercel.app/ (GitHub Pages cannot run this Node app)
+- Repo: hncrm/Hello-Muse, branch `main`
+
+## Commands
+
+```bash
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # production build — must pass before any push
+npm run lint     # ESLint — must pass before any push
+npm run test:unit  # Vitest — tests/unit/
+npm run test:e2e   # Playwright — tests/e2e/ (needs `npx playwright install`)
+```
+
+## Pages (all 7, do not rename routes)
+
+- `/` Home, `/services`, `/about`, `/process`, `/case-studies`, `/blog` (+ `/blog/[slug]`), `/contact`
+- Canonical routes are `/case-studies` and `/blog` — not `/testimonials` or `/insights`
+- Shared layout/header: `app/layout.tsx`, `components/SiteHeader.tsx`; nav in `lib/nav.ts`
+
+## Hard rules
+
+- **Do not invent clients, results, testimonials, or case studies.** Case studies and blog posts are labelled placeholder/sample until Huy supplies real ones. Replace placeholder content only with real content Huy provides.
+- **Do not invent a real contact email.** The placeholder is `hello@hhxservices.example` (see `.env.example` / `CONTACT_NOTIFY_EMAIL`). Huy will confirm the real email later.
+- **Do not invent a response time.** The placeholder `[X working days — to be confirmed]` appears in the contact intro, sidebar and confirmation. Leave it until Huy confirms.
+- **No email is sent yet.** Enquiries are stored locally in `data/enquiries.json` (git-ignored, interim only). Do not wire up email/Dataverse without Huy's explicit go-ahead.
+- Keep the HHX design tokens: navy `#0f2a44`, blue `#2563eb`, teal `#0e7490`; 16px inputs, 48px primary CTA.
+- Keep changes small and focused. Run `npm run build`, `npm run lint` and `npm run test:unit` after code changes and fix failures before finishing.
+- This repo's Next.js version has breaking changes vs older versions — read the relevant guide in `node_modules/next/dist/docs/` before writing code that relies on Next.js APIs (see `AGENTS.md`).

@@ -3,9 +3,9 @@
 HHX Services: Microsoft Power Apps, Dataverse and Power Platform consultancy
 for small businesses. Site language: English only.
 
-This is a **local-only rebuild** of the static demo site
-(`~/workspace/hhx-services-website/`, live at https://hncrm.github.io/Hello-Muse/).
-Nothing here has been pushed to GitHub and hosting has not changed.
+This is a rebuild of the original static demo site. It is live on Vercel at
+https://hello-muse.vercel.app/ (repo: hncrm/Hello-Muse, branch `main`).
+The old static files are kept under `old/` in the repo for reference.
 
 ## Framework — why Next.js
 
@@ -14,10 +14,9 @@ Nothing here has been pushed to GitHub and hosting has not changed.
   the 7 planned pages, built-in API Route Handlers for the contact form, static
   generation for the marketing pages, and straightforward deployment to the
   likely future host (Azure Static Web Apps / Azure App Service, or Vercel).
-- **Hosting implication:** GitHub Pages is static-only, so this Node app
-  **cannot** run there as-is. Hosting will need to change when the rebuild
-  goes live (likely Azure Static Web Apps, which supports Next.js). That is a
-  decision for Huy — no hosting change has been made here.
+- **Hosting:** GitHub Pages is static-only, so this Node app **cannot** run
+  there. It is hosted on Vercel (Framework Preset: Next.js), which deploys
+  automatically from `main`.
 
 ## Pages (all 7 planned pages)
 
@@ -73,6 +72,19 @@ Implemented to the redesign spec in
   saving enquiries to **Dataverse via Power Pages / Dataverse Web API** — not
   connected (no Azure account is connected to Muse yet).
 
+## Working in Cursor
+
+Open this repo in Cursor — it picks up the project rules automatically:
+
+- `.cursor/rules/project.mdc` — always applied: stack, pages, and hard rules (no invented clients/results, placeholder email and response time, no email/Dataverse wiring without Huy's go-ahead).
+- `.cursor/rules/contact-form.mdc` — applied for the contact form / API / enquiries code.
+- `.cursor/rules/testing.mdc` — applied for tests.
+
+Workflow: Muse works on the code here and pushes to GitHub; open the same
+repo in Cursor to review, edit, or run it locally. Cursor's agent follows
+the same rules files. Before pushing, run `npm run build`, `npm run lint`
+and `npm run test:unit`.
+
 ## Run locally
 
 ```bash
@@ -96,8 +108,6 @@ Optional: copy `.env.example` to `.env.local` to set `CONTACT_NOTIFY_EMAIL`
 
 ## Still incomplete / needs decisions from Huy
 
-- **Hosting** — GitHub Pages cannot run this; choose Azure Static Web Apps /
-  App Service (or another Node host) before go-live.
 - **Contact email** — real address to replace `hello@hhxservices.example`.
 - **Response time** — the `[X working days]` promise in three places.
 - **Form destination** — email inbox vs. Dataverse/Power Pages vs. a form
