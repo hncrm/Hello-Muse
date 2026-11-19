@@ -1,0 +1,92 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #0f2a44;
+  --color-navy-dark: #0a1f33;
+  --color-brand: #2563eb;
+  --color-brand-dark: #1d4ed8;
+  --color-teal-accent: #0e7490;
+  --color-ink: #1f2937;
+  --color-muted: #4b5563;
+  --color-line: #e5e7eb;
+  --color-surface: #f8fafc;
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-ink);
+  line-height: 1.6;
+  background: #fff;
+}
+
+/* ---- shared bits ---- */
+.container-x {
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-inline: 20px;
+}
+
+/* Visible keyboard focus everywhere (HHX blue, on-brand). */
+:focus-visible {
+  outline: 3px solid var(--color-brand);
+  outline-offset: 2px;
+}
+.eyebrow {
+  color: var(--color-teal-accent);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 0.85rem;
+  margin: 0 0 12px;
+}
+
+/* ---- form ---- */
+.field-label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.875rem;
+  color: var(--color-navy);
+  margin-bottom: 4px;
+}
+.field-label .optional {
+  font-weight: 400;
+  color: var(--color-muted);
+  font-size: 0.85rem;
+}
+.field-input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font: inherit;
+  font-size: 1rem; /* 16px — stops iOS zooming on focus */
+  background: #fff;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.field-input::placeholder {
+  color: #6b7280;
+}
+.field-input:focus {
+  outline: none;
+  border-color: var(--color-brand);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.35);
+}
+.field-input:disabled {
+  background: var(--color-surface);
+}
+.field-input[aria-invalid="true"] {
+  border-color: #dc2626;
+  border-width: 2px;
+  background: #fef2f2;
+}
+.field-error {
+  color: #b91c1c;
+  font-size: 0.875rem;
+  margin: 6px 0 0;
+}
+.field-hint {
+  color: var(--color-muted);
+  font-size: 0.875rem;
+  margin: 0 0 6px;
+}
