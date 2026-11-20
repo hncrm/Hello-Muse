@@ -42,34 +42,43 @@ const STEPS = [
 
 export default function ProcessPage() {
   return (
-    <div className="container-x py-10">
-      <p className="eyebrow">How we work</p>
-      <h1 className="text-4xl text-navy">A simple process, no big IT project.</h1>
-      <p className="text-lg text-muted">
-        Six steps, starting with a chat. You can stop after any step — the review and proposal
-        cost you nothing but the conversation.
-      </p>
+    <>
+      <section className="section-pale section-sm">
+        <div className="container-x">
+          <p className="eyebrow">How we work</p>
+          <h1 className="hero-title" style={{ fontSize: "clamp(2.25rem, 4vw, 3.25rem)" }}>
+            A simple process, no big IT project.
+          </h1>
+          <p className="lead text-muted max-w-[720px]">
+            Six steps, starting with a chat. You can stop after any step — the review and proposal
+            cost you nothing but the conversation.
+          </p>
+        </div>
+      </section>
 
-      <ol className="list-none p-0 mt-8 space-y-6">
-        {STEPS.map((s) => (
-          <li key={s.title} className="border border-line rounded-xl p-5 bg-white">
-            <h2 className="text-navy text-xl mt-0">{s.title}</h2>
-            <p>{s.body}</p>
-            <p className="text-muted text-sm">
-              <strong className="text-ink">Outcome:</strong> {s.outcome}
-            </p>
-          </li>
-        ))}
-      </ol>
-
-      <p className="mt-8">
-        <Link
-          href="/contact"
-          className="inline-block bg-brand text-white px-[18px] py-3 rounded-lg no-underline font-bold hover:bg-brand-dark"
-        >
-          Start with step 1 — book a chat
-        </Link>
-      </p>
-    </div>
+      <section className="section section-light">
+        <div className="container-x">
+          <ol className="list-none p-0 m-0 grid gap-6 md:grid-cols-2">
+            {STEPS.map((s, i) => (
+              <li key={s.title} className="card-light">
+                <span className="icon-tile" aria-hidden="true">
+                  {i + 1}
+                </span>
+                <h2 className="text-navy text-xl font-bold mt-0">{s.title}</h2>
+                <p>{s.body}</p>
+                <p className="text-muted text-sm mb-0">
+                  <strong className="text-ink">Outcome:</strong> {s.outcome}
+                </p>
+              </li>
+            ))}
+          </ol>
+          <p className="mt-12">
+            <Link href="/contact" className="btn btn-primary">
+              Start with step 1 — book a chat
+            </Link>
+          </p>
+        </div>
+      </section>
+    </>
   );
 }

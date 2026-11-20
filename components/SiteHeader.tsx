@@ -7,10 +7,10 @@ import { NAV } from "@/lib/nav";
 export default function SiteHeader() {
   const pathname = usePathname();
   return (
-    <header className="bg-navy text-white sticky top-0 z-10">
+    <header className="bg-white text-navy sticky top-0 z-10 shadow-[0_2px_16px_rgba(1,10,36,0.08)]">
       <div className="container-x flex flex-wrap items-center justify-between gap-x-4 gap-y-2 py-3 min-h-16">
-        <Link href="/" className="font-extrabold text-xl text-white no-underline">
-          HHX Services
+        <Link href="/" className="font-extrabold text-xl text-navy no-underline">
+          HHX <span className="text-brand">Services</span>
         </Link>
         <nav className="flex flex-wrap gap-x-1 gap-y-1" aria-label="Main navigation">
           {NAV.map((item) => {
@@ -21,8 +21,8 @@ export default function SiteHeader() {
                 key={item.href}
                 href={item.href}
                 aria-current={current ? "page" : undefined}
-                className={`px-2 py-2 rounded text-[#dbeafe] no-underline hover:text-white hover:underline ${
-                  current ? "text-white font-bold underline" : ""
+                className={`px-3 py-2 rounded-full text-navy no-underline hover:text-brand ${
+                  current ? "text-brand font-bold" : ""
                 }`}
               >
                 {item.label}
@@ -30,10 +30,7 @@ export default function SiteHeader() {
             );
           })}
         </nav>
-        <Link
-          href="/contact"
-          className="hidden md:inline-block bg-brand text-white px-4 py-2.5 rounded-lg no-underline font-bold text-sm hover:bg-brand-dark min-h-11"
-        >
+        <Link href="/contact" className="btn btn-primary btn-no-arrow hidden md:inline-flex text-sm px-5 py-2.5 min-h-11">
           Book a free 15-minute chat
         </Link>
       </div>

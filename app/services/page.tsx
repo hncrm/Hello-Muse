@@ -11,6 +11,7 @@ const SERVICES = [
   {
     title: "Power Apps",
     topic: "power-apps",
+    icon: "◈",
     problem:
       "Approvals, job tracking or customer details live in spreadsheets, email and paper.",
     help: "We build a focused app your team can use on phone or desktop — for example, a job tracker, a leave request app, or a simple customer record.",
@@ -19,6 +20,7 @@ const SERVICES = [
   {
     title: "Dataverse",
     topic: "dataverse",
+    icon: "▦",
     problem:
       "The same customer or job details are entered in three places, and none of them agree.",
     help: "We design a clean Dataverse data model with proper security, so your apps and reports share one trusted source.",
@@ -27,6 +29,7 @@ const SERVICES = [
   {
     title: "Power Platform & Automation",
     topic: "automation",
+    icon: "✦",
     problem:
       "Repetitive admin — copying data, sending reminders, chasing approvals — eats up the week.",
     help: "We automate those steps with Power Automate, and add simple Power BI views so you can see jobs, sales or workloads at a glance.",
@@ -36,47 +39,60 @@ const SERVICES = [
 
 export default function ServicesPage() {
   return (
-    <div className="container-x py-10">
-      <h1 className="text-4xl text-navy">Services</h1>
-      <p className="text-lg text-muted">
-        Built for small businesses: practical, focused, and easy for your team to use.
-      </p>
+    <>
+      <section className="section-pale section-sm">
+        <div className="container-x">
+          <p className="eyebrow">Services</p>
+          <h1 className="hero-title" style={{ fontSize: "clamp(2.25rem, 4vw, 3.25rem)" }}>
+            Services
+          </h1>
+          <p className="lead text-muted max-w-[720px]">
+            Built for small businesses: practical, focused, and easy for your team to use.
+          </p>
+        </div>
+      </section>
 
-      {SERVICES.map((s) => (
-        <section key={s.title} className="border-t border-line py-6">
-          <h2 className="text-navy text-2xl">{s.title}</h2>
-          <p>
-            <strong>The problem:</strong> {s.problem}
+      <section className="section section-light">
+        <div className="container-x grid gap-6">
+          {SERVICES.map((s) => (
+            <article key={s.title} className="card-light">
+              <span className="icon-tile" aria-hidden="true">
+                {s.icon}
+              </span>
+              <h2 className="text-navy text-2xl font-bold mt-0">{s.title}</h2>
+              <p>
+                <strong>The problem:</strong> {s.problem}
+              </p>
+              <p>
+                <strong>How we help:</strong> {s.help}
+              </p>
+              <p>
+                <strong>Result:</strong> {s.result}
+              </p>
+              <p className="mb-0">
+                <Link href={`/contact?topic=${s.topic}`} className="read-more">
+                  Discuss a {s.title} project
+                </Link>
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-dark section-sm">
+        <div className="container-x">
+          <h2 className="section-title">How pricing works</h2>
+          <p className="lead max-w-[720px]">
+            Every engagement starts with a short chat and a fixed proposal for the first step. No
+            open-ended hourly billing without a clear scope.
           </p>
-          <p>
-            <strong>How we help:</strong> {s.help}
-          </p>
-          <p>
-            <strong>Result:</strong> {s.result}
-          </p>
-          <p>
-            <Link href={`/contact?topic=${s.topic}`} className="text-brand underline">
-              Discuss a {s.title} project →
+          <p className="mt-8">
+            <Link href="/contact" className="btn btn-primary">
+              Ask about your project
             </Link>
           </p>
-        </section>
-      ))}
-
-      <section className="bg-surface border border-line rounded-xl p-6 mt-6">
-        <h2 className="text-navy text-2xl mt-0">How pricing works</h2>
-        <p>
-          Every engagement starts with a short chat and a fixed proposal for the first step. No
-          open-ended hourly billing without a clear scope.
-        </p>
-        <p>
-          <Link
-            href="/contact"
-            className="inline-block bg-brand text-white px-[18px] py-3 rounded-lg no-underline font-bold hover:bg-brand-dark"
-          >
-            Ask about your project
-          </Link>
-        </p>
+        </div>
       </section>
-    </div>
+    </>
   );
 }

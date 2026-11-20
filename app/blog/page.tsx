@@ -10,35 +10,43 @@ export const metadata: Metadata = {
 
 export default function BlogPage() {
   return (
-    <div className="container-x py-10">
-      <p className="eyebrow">Blog / Insights</p>
-      <h1 className="text-4xl text-navy">Practical notes on Power Platform.</h1>
-      <p className="text-lg text-muted">
-        Short, plain-English posts about Power Apps, Dataverse and automation for small
-        businesses. Posts below are labelled samples until real HHX articles are written.
-      </p>
+    <>
+      <section className="section-pale section-sm">
+        <div className="container-x">
+          <p className="eyebrow">Blog / Insights</p>
+          <h1 className="hero-title" style={{ fontSize: "clamp(2.25rem, 4vw, 3.25rem)" }}>
+            Practical notes on Power Platform.
+          </h1>
+          <p className="lead text-muted max-w-[760px]">
+            Short, plain-English posts about Power Apps, Dataverse and automation for small
+            businesses. Posts below are labelled samples until real HHX articles are written.
+          </p>
+        </div>
+      </section>
 
-      <div className="grid gap-4 mt-8">
-        {BLOG_POSTS.map((post) => (
-          <article key={post.slug} className="border border-line rounded-xl p-5 bg-white">
-            <p className="text-sm text-muted mt-0">
-              {post.date}
-              {post.sample && " · Sample post"}
-            </p>
-            <h2 className="text-navy text-xl mt-0">
-              <Link href={`/blog/${post.slug}`} className="text-navy no-underline hover:underline">
-                {post.title}
-              </Link>
-            </h2>
-            <p>{post.summary}</p>
-            <p>
-              <Link href={`/blog/${post.slug}`} className="text-brand underline">
-                Read more →
-              </Link>
-            </p>
-          </article>
-        ))}
-      </div>
-    </div>
+      <section className="section section-light">
+        <div className="container-x grid gap-6 md:grid-cols-3">
+          {BLOG_POSTS.map((post) => (
+            <article key={post.slug} className="card-light flex flex-col">
+              <p className="text-sm mt-0 font-bold" style={{ color: "var(--color-brand-mid)" }}>
+                {post.date}
+                {post.sample && <span className="text-muted font-normal"> · Sample post</span>}
+              </p>
+              <h2 className="text-navy text-xl font-bold mt-0">
+                <Link href={`/blog/${post.slug}`} className="text-navy no-underline hover:underline">
+                  {post.title}
+                </Link>
+              </h2>
+              <p className="flex-1">{post.summary}</p>
+              <p className="mb-0">
+                <Link href={`/blog/${post.slug}`} className="read-more">
+                  Read more
+                </Link>
+              </p>
+            </article>
+          ))}
+        </div>
+      </section>
+    </>
   );
 }

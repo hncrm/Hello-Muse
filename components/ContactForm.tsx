@@ -169,7 +169,7 @@ export default function ContactForm({ initialTopic }: { initialTopic?: string })
   if (status === "success" && confirmed) {
     const first = firstName(confirmed.name);
     return (
-      <div className="rounded-xl border border-line bg-white p-8 shadow-[0_1px_3px_rgba(15,42,68,0.08)] border-l-4 border-l-teal-accent">
+      <div className="rounded-[20px] border border-line bg-white p-8 shadow-[0_8px_30px_rgba(1,10,36,0.08)] border-l-4 border-l-brand-mid">
         <div role="status">
           <svg
             width="32"
@@ -178,7 +178,7 @@ export default function ContactForm({ initialTopic }: { initialTopic?: string })
             aria-hidden="true"
             className="mb-3"
           >
-            <circle cx="16" cy="16" r="15" fill="#0e7490" />
+            <circle cx="16" cy="16" r="15" fill="#1267c8" />
             <path
               d="M9 16.5l4.5 4.5L23 11"
               fill="none"
@@ -232,9 +232,9 @@ export default function ContactForm({ initialTopic }: { initialTopic?: string })
           <p className="mt-6">
             <Link
               href="/process"
-              className="inline-block bg-brand text-white px-6 py-3.5 rounded-lg no-underline font-bold hover:bg-brand-dark min-h-12"
+              className="btn btn-primary"
             >
-              See how we work →
+              See how we work
             </Link>{" "}
             <Link href="/" className="text-brand underline ml-3">
               Back to home →
@@ -248,7 +248,7 @@ export default function ContactForm({ initialTopic }: { initialTopic?: string })
   const errorFields = FIELD_ORDER.filter((f) => errors[f]);
 
   return (
-    <div className="rounded-xl border border-line bg-white p-5 md:p-8 shadow-[0_1px_3px_rgba(15,42,68,0.08)]">
+    <div className="rounded-[20px] border border-line bg-white p-5 md:p-8 shadow-[0_8px_30px_rgba(1,10,36,0.08)]">
       {submitError && (
         <div role="alert" className="rounded-lg border border-[#dc2626] bg-[#fef2f2] px-4 py-3 mb-5">
           <p className="mt-0 mb-0 text-[#b91c1c]">{submitError}</p>
@@ -470,7 +470,7 @@ export default function ContactForm({ initialTopic }: { initialTopic?: string })
             <button
               type="submit"
               disabled={status === "submitting"}
-              className="w-full md:w-auto md:min-w-[220px] min-h-12 bg-brand text-white font-bold text-base px-6 py-3.5 rounded-lg border-0 cursor-pointer hover:bg-brand-dark disabled:opacity-65 disabled:cursor-not-allowed"
+              className="btn btn-primary btn-no-arrow w-full md:w-auto md:min-w-[220px] justify-center disabled:opacity-65 disabled:cursor-not-allowed"
             >
               {status === "submitting" ? "Sending…" : "Send my enquiry"}
             </button>

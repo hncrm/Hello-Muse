@@ -49,20 +49,22 @@ export default async function BlogPostPage({
   if (!post) notFound();
 
   return (
-    <article className="container-x py-10">
-      <p className="text-sm text-muted">
+    <article className="section-pale section-sm">
+      <div className="container-x max-w-[820px]">
+      <p className="text-sm font-bold" style={{ color: "var(--color-brand-mid)" }}>
         {post.date}
         {post.sample && " · Sample post — replace with a real HHX article"}
       </p>
-      <h1 className="text-4xl text-navy">{post.title}</h1>
+      <h1 className="hero-title" style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>{post.title}</h1>
       {post.body.map((para, i) => (
-        <p key={i}>{para}</p>
+        <p key={i} className="text-lg leading-relaxed">{para}</p>
       ))}
-      <p className="mt-8">
-        <Link href="/blog" className="text-brand underline">
-          ← Back to all posts
+      <p className="mt-10">
+        <Link href="/blog" className="read-more">
+          Back to all posts
         </Link>
       </p>
+      </div>
     </article>
   );
 }

@@ -25,9 +25,9 @@ export default async function ContactPage({
   const initialTopic = isTopicValue(params.topic) ? params.topic : undefined;
   return (
     <div className="bg-surface">
-      <div className="container-x py-10">
+      <div className="container-x py-16 md:py-24">
         <p className="eyebrow">Microsoft Power Platform consultancy</p>
-        <h1 className="text-4xl md:text-[2.25rem] text-navy max-w-[720px]">
+        <h1 className="hero-title max-w-[720px]" style={{ fontSize: "clamp(2.25rem, 4vw, 3.25rem)" }}>
           Let&rsquo;s talk about your process
         </h1>
         <p className="text-lg text-muted max-w-[720px]">
@@ -45,7 +45,7 @@ export default async function ContactPage({
             <ContactForm initialTopic={initialTopic} />
           </div>
 
-          <aside className="rounded-xl border border-line bg-surface p-6 h-fit">
+          <aside className="rounded-[20px] border border-line bg-white p-6 md:p-8 h-fit shadow-[0_8px_30px_rgba(1,10,36,0.06)]">
             <h2 className="text-navy text-xl mt-0">What happens next</h2>
             <ol className="pl-5 space-y-3">
               <li>
